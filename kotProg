@@ -1,0 +1,37 @@
+package com.myapplication.myapplicationcom.myapplication
+
+import android.Manifest
+import android.content.pm.PackageManager
+import android.graphics.drawable.AnimatedImageDrawable
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.telephony.SmsMessage
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import androidx.core.app.ActivityCompat
+
+class MainActivity : AppCompatActivity() {
+    lateinit var ivProfileImage: ImageView
+    lateinit var etName: EditText
+    lateinit var etAge: EditText
+    lateinit var etNumber: EditText
+    lateinit var btnSubmit: Button
+            
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        
+        ivProfileImage=findViewById(R.id.ivProfileImage)
+        etName=findViewById(R.id.etNAME)
+        etAge=findViewById(R.id.etAge)
+        etNumber=findViewById(R.id.etNumber)
+        btnSubmit=findViewById(R.id.btnSubmit)
+        
+        ivProfileImage.setOnClickListener{
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA)!=PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), 100)
+            }
+        }
+    }
+}
